@@ -1,0 +1,14 @@
+name: Local runner test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  testRunner:
+    runs-on: [self-hosted]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Terraform
+        uses: hashicorp/setup-terraform@v2
+      - name: Display Terraform Version
+        run: terraform --version      
