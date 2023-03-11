@@ -12,3 +12,7 @@ jobs:
         uses: hashicorp/setup-terraform@v2
       - name: Display Terraform Version
         run: terraform --version      
+      - name: "Login via Azure CLI"
+        uses: azure/login@v1.4.5
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
