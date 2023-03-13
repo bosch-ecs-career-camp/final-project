@@ -6,7 +6,7 @@ on:
 env:
   RUNNER_VERSION: 2.294.1
   ACR_NAME: stream4bosch
-  R_GROUP: final-project
+  R_GROUP: images
 
 jobs:
   build-and-push:
@@ -22,9 +22,11 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       - run: |
          acrLength=`az acr list --query "[?name=='${{ env.ACR_NAME }}']"`
-         [[ ${#acrLength} -gt 3 ]] && echo "acr exist" || \
+         [[ ${#acrLength} -gt 3 ]] && echo "acr ${{ env.ACR_NAME }} exist" || \
+         az group create -l westeurope -n ${{ env.R_GROUP }}
          az acr create --resource-group ${{ env.R_GROUP }} \
-         --name ${{ env.ACR_NAME }} --sku Basic
+         --name ${{ env.ACR_NAME }} --sku Basic \
+         --admin-enabled true
 
       # - name: Azure CLI script file
       #   uses: azure/CLI@v1

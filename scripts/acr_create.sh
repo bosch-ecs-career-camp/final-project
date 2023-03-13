@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export location="westeurope"
-export resourceGroup="final-project"
+export resourceGroup="images"
 export acrName=stream4bosch
 
 acrLength=`az acr list --query "[?name=='stream4bosch']"`
