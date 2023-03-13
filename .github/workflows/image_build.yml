@@ -1,4 +1,4 @@
-name: Image-Build&Push-Workflow
+name: Create ACR Building Versioning and Pushing the Image
 
 on:
   workflow_dispatch:
@@ -22,7 +22,7 @@ jobs:
         uses: azure/login@v1.4.5
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-      - name: "create azure container registry"  
+      - name: "Create Azure Container Registry"  
         run: |
          acrLength=`az acr list --query "[?name=='${{ env.ACR_NAME }}']"`
          [[ ${#acrLength} -gt 3 ]] && echo "acr ${{ env.ACR_NAME }} exist" || \
@@ -38,7 +38,7 @@ jobs:
       #       chmod +x $GITHUB_WORKSPACE/scripts/acr_create.sh
       #       $GITHUB_WORKSPACE/scripts/acr_create.sh
 
-      - name: "Azure container registry login"
+      - name: "Azure Container Registry Login"
         uses: azure/docker-login@v1
         with:
           login-server: ${{ env.ACR_NAME }}.azurecr.io
@@ -47,8 +47,8 @@ jobs:
       - name: "Build and Push Runner image"
         run: |
           count=$(git rev-list --all --count)
-          docker build --build-arg RUNNER_VERSION=${{ env.RUNNER_VERSION }} -t ${{ env.ACR_NAME }}.azurecr.io/final-project:${GITHUB_SHA::6}.$count .      
-          docker push ${{ env.ACR_NAME }}.azurecr.io/final-project:ver.$commit_count
+          docker build --build-arg RUNNER_VERSION=${{ env.RUNNER_VERSION }} -t ${{ env.ACR_NAME }}.azurecr.io/final-project:${GITHUB_SHA::6}.v$count .      
+          docker push ${{ env.ACR_NAME }}.azurecr.io/final-project:${GITHUB_SHA::6}.v$count
 
 
       
