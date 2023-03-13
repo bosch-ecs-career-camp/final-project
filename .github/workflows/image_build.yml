@@ -23,7 +23,7 @@ jobs:
       - run: |
          acrLength=`az acr list --query "[?name=='${{ env.ACR_NAME }}']"`
          [[ ${#acrLength} -gt 3 ]] && echo "acr ${{ env.ACR_NAME }} exist" || \
-         az group create -l westeurope -n ${{ env.R_GROUP }} \
+         az group create -l westeurope -n ${{ env.R_GROUP }} ; \
          az acr create --resource-group ${{ env.R_GROUP }} \
          --name ${{ env.ACR_NAME }} --sku Basic \
          --admin-enabled true
