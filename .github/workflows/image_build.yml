@@ -20,7 +20,8 @@ jobs:
         uses: azure/login@v1.4.5
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-      - run: |
+      - name: "create azure container registry"  
+        run: |
          acrLength=`az acr list --query "[?name=='${{ env.ACR_NAME }}']"`
          [[ ${#acrLength} -gt 3 ]] && echo "acr ${{ env.ACR_NAME }} exist" || \
          az acr create --resource-group ${{ env.R_GROUP }} \
@@ -35,15 +36,15 @@ jobs:
       #       chmod +x $GITHUB_WORKSPACE/scripts/acr_create.sh
       #       $GITHUB_WORKSPACE/scripts/acr_create.sh
 
-      # - name: "Build GitHub Runner container image"
-      #   uses: azure/docker-login@v1
-      #   with:
-      #     login-server: ${{ env.ACR_NAME }}.azurecr.io
-      #     username: ${{ secrets.REGISTRY_USERNAME }}
-      #     password: ${{ secrets.REGISTRY_PASSWORD }}
-      # - run: |
-      #     docker build --build-arg RUNNER_VERSION=${{ env.RUNNER_VERSION }} -t ${{ env.ACR_NAME }}.azurecr.io/final-project:${{ env.RUNNER_VERSION }} .      
-      #     docker push ${{ env.ACR_NAME }}.azurecr.io/final-project:${{ env.RUNNER_VERSION }}
+      - name: "Build GitHub Runner container image"
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{ env.ACR_NAME }}.azurecr.io
+          username: ${{ env.ACR_NAME }}
+          password: ${{ secrets.REG_PASS }}
+      - run: |
+          docker build --build-arg RUNNER_VERSION=${{ env.RUNNER_VERSION }} -t ${{ env.ACR_NAME }}.azurecr.io/final-project:${{ env.RUNNER_VERSION }} .      
+          docker push ${{ env.ACR_NAME }}.azurecr.io/final-project:${{ env.RUNNER_VERSION }}
 
 
       
