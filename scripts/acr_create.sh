@@ -2,9 +2,11 @@
 
 export location="westeurope"
 export resourceGroup="final-project"
+export acrName=stream4bosch
 
 az acr create --resource-group $resourceGroup \
-  --name stream4bosch --sku Basic
+  --name $acrName --sku Basic
 
+az acr login --name $acrName
 
 
