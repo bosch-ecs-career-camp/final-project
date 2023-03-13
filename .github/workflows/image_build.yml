@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 env:
-  RUNNER_VERSION: 2.294.1
+  RUNNER_VERSION: "2.303.0"
   ACR_NAME: stream4bosch
   R_GROUP: final-project
 
