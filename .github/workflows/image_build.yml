@@ -15,6 +15,8 @@ jobs:
       # checkout the repo
       - name: "Checkout GitHub Action"
         uses: actions/checkout@v3.0.2
+        with:
+          fetch-depth: 0
 
       - name: "Login via Azure CLI"
         uses: azure/login@v1.4.5
@@ -36,15 +38,16 @@ jobs:
       #       chmod +x $GITHUB_WORKSPACE/scripts/acr_create.sh
       #       $GITHUB_WORKSPACE/scripts/acr_create.sh
 
-      - name: "Build GitHub Runner container image"
+      - name: "Azure container registry login"
         uses: azure/docker-login@v1
         with:
           login-server: ${{ env.ACR_NAME }}.azurecr.io
           username: ${{ env.ACR_NAME }}
           password: ${{ secrets.REG_PASS }}
-      - run: |
-          commit_count=$(git rev-list HEAD --count)
-          docker build --build-arg RUNNER_VERSION=${{ env.RUNNER_VERSION }} -t ${{ env.ACR_NAME }}.azurecr.io/final-project:ver.$commit_count .      
+      - name: "Build and Push Runner image"
+        run: |
+          count=$(git rev-list --all --count)
+          docker build --build-arg RUNNER_VERSION=${{ env.RUNNER_VERSION }} -t ${{ env.ACR_NAME }}.azurecr.io/final-project:${GITHUB_SHA::6}.$count .      
           docker push ${{ env.ACR_NAME }}.azurecr.io/final-project:ver.$commit_count
 
 
