@@ -28,7 +28,7 @@ jobs:
          az acr create --resource-group ${{ env.R_GROUP }} \
          --name ${{ env.ACR_NAME }} --sku Basic \
          --admin-enabled true ; \
-         az acr credential renew -n $acrName \
+         az acr credential renew -n ${{ env.ACR_NAME }} \
          --password-name ${{ secrets.REG_PASS }}
 
       # - name: Azure CLI script file
