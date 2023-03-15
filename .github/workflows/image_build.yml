@@ -9,10 +9,9 @@ env:
   R_GROUP: final-project
 
 jobs:
-  build-and-push:
+  acr-build-push-and-versioning:
     runs-on: ubuntu-latest
-    steps:
-      # checkout the repo
+    steps:      
       - name: "Checkout GitHub Action"
         uses: actions/checkout@v3.0.2
         with:
@@ -28,7 +27,9 @@ jobs:
          [[ ${#acrLength} -gt 3 ]] && echo "acr ${{ env.ACR_NAME }} exist" || \
          az acr create --resource-group ${{ env.R_GROUP }} \
          --name ${{ env.ACR_NAME }} --sku Basic \
-         --admin-enabled true
+         --admin-enabled true 
+         az acr credential renew -n $acrName \
+         --password-name ${{ secrets.REG_PASS }}
 
       # - name: Azure CLI script file
       #   uses: azure/CLI@v1
