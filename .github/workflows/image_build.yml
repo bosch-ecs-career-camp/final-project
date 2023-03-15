@@ -6,10 +6,9 @@ on:
 env:
   RUNNER_VERSION: "2.303.0"
   ACR_NAME: stream4bosch
-  R_GROUP: final-project
-
+  
 jobs:
-  acr-build-push-and-versioning:
+  build-push-and-versioning:
     runs-on: ubuntu-latest
     steps:      
       - name: "Checkout GitHub Action"
@@ -17,20 +16,18 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: "Login via Azure CLI"
-        uses: azure/login@v1.4.5
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-      - name: "Create Azure Container Registry"  
-        run: |
-         acrLength=`az acr list --query "[?name=='${{ env.ACR_NAME }}']"`
-         [[ ${#acrLength} -gt 3 ]] && echo "acr ${{ env.ACR_NAME }} exist" || \
-         az acr create --resource-group ${{ env.R_GROUP }} \
-         --name ${{ env.ACR_NAME }} --sku Basic \
-        #  --admin-enabled true ; \
-         TOKEN=$(az acr login --name ${{ env.ACR_NAME }} --expose-token --output tsv --query accessToken) ; \
-         docker login ${{ env.ACR_NAME }}.azurecr.io --username 00000000-0000-0000-0000-000000000000 --password $TOKEN
-
+      # - name: "Login via Azure CLI"
+      #   uses: azure/login@v1.4.5
+      #   with:
+      #     creds: ${{ secrets.AZURE_CREDENTIALS }}
+      # - name: "Create Azure Container Registry"  
+      #   run: |
+      #    acrLength=`az acr list --query "[?name=='${{ env.ACR_NAME }}']"`
+      #    [[ ${#acrLength} -gt 3 ]] && echo "acr ${{ env.ACR_NAME }} exist" || \
+      #    az acr create --resource-group ${{ env.R_GROUP }} \
+      #    --name ${{ env.ACR_NAME }} --sku Basic \
+      #    --admin-enabled true 
+         
 
       # - name: Azure CLI script file
       #   uses: azure/CLI@v1
