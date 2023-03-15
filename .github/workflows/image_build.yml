@@ -27,9 +27,10 @@ jobs:
          [[ ${#acrLength} -gt 3 ]] && echo "acr ${{ env.ACR_NAME }} exist" || \
          az acr create --resource-group ${{ env.R_GROUP }} \
          --name ${{ env.ACR_NAME }} --sku Basic \
-         --admin-enabled true ; \
-         az acr credential renew -n ${{ env.ACR_NAME }} \
-         --password-name ${{ secrets.REG_PASS }}
+        #  --admin-enabled true ; \
+         TOKEN=$(az acr login --name ${{ env.ACR_NAME }} --expose-token --output tsv --query accessToken) ; \
+         docker login ${{ env.ACR_NAME }}.azurecr.io --username 00000000-0000-0000-0000-000000000000 --password $TOKEN
+
 
       # - name: Azure CLI script file
       #   uses: azure/CLI@v1
