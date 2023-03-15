@@ -27,7 +27,7 @@ jobs:
          [[ ${#acrLength} -gt 3 ]] && echo "acr ${{ env.ACR_NAME }} exist" || \
          az acr create --resource-group ${{ env.R_GROUP }} \
          --name ${{ env.ACR_NAME }} --sku Basic \
-         --admin-enabled true 
+         --admin-enabled true ; \
          az acr credential renew -n $acrName \
          --password-name ${{ secrets.REG_PASS }}
 
