@@ -1,11 +1,11 @@
-name: Create ACR Building Versioning and Pushing the Image
+name: Building Versioning and Pushing the Image
 
 on:
   workflow_dispatch:
 
 env:
-  RUNNER_VERSION: "2.303.0"
-  ACR_NAME: stream4bosch
+  #RUNNER_VERSION: "2.303.0"
+  ACR_NAME: stream4-acr
   
 jobs:
   build-push-and-versioning:
@@ -46,7 +46,7 @@ jobs:
       - name: "Build and Push Runner image"
         run: |
           count=$(git rev-list --all --count)
-          docker build --build-arg RUNNER_VERSION=${{ env.RUNNER_VERSION }} -t ${{ env.ACR_NAME }}.azurecr.io/final-project:${GITHUB_SHA::6}.v$count .      
+          docker build --build-arg -t ${{ env.ACR_NAME }}.azurecr.io/final-project:${GITHUB_SHA::6}.v$count .      
           docker push ${{ env.ACR_NAME }}.azurecr.io/final-project:${GITHUB_SHA::6}.v$count
 
 

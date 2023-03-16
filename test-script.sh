@@ -18,3 +18,10 @@ acrLength=`az acr list --query "[?name=='stream4bosvch']"`
 [[ ${#acrLength} -gt 3 ]] && echo "acr exist" || \
 az acr create --resource-group $resourceGroup \
   --name $acrName --sku Basic
+
+  az acr credential show -n stream4bosch --query passwords[0].value
+
+  --admin-enabled true ;
+
+#  ----------  atach ACR to AKS -------------------
+az aks update -n stream4-task-aks -g final-project --attach-acr stream4bosch
