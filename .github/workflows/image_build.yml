@@ -5,7 +5,7 @@ on:
 
 env:
   #RUNNER_VERSION: "2.303.0"
-  ACR_NAME: stream4-acr
+  ACR_NAME: stream4acr
   
 jobs:
   build-push-and-versioning:
