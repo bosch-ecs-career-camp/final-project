@@ -46,7 +46,7 @@ jobs:
       - name: "Build and Push Runner image"
         run: |
           count=$(git rev-list --all --count)
-          docker build --build-arg -t ${{ env.ACR_NAME }}.azurecr.io/final-project:${GITHUB_SHA::6}.v$count .      
+          docker build -t ${{ env.ACR_NAME }}.azurecr.io/final-project:${GITHUB_SHA::6}.v$count .      
           docker push ${{ env.ACR_NAME }}.azurecr.io/final-project:${GITHUB_SHA::6}.v$count
 
 
