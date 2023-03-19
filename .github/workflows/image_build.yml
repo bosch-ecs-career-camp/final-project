@@ -2,6 +2,9 @@ name: Building Versioning and Pushing the Image
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - 'Dockerfile'
 
 env:
   #RUNNER_VERSION: "2.303.0"
