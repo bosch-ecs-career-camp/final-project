@@ -2,10 +2,13 @@
 
 export location="westeurope"
 export resourceGroup="stream4-rg"
-export acrName="stream4-acr"
+export acrName="stream4acr"
 
-acrLength=`az acr list --query "[?name=='$acrName']"`
-[[ ${#acrLength} -gt 3 ]] && echo "acr exist" || \
+# ---- create resource group ----
+az group create -l $location -n $resourceGroup 
+
+# acrLength=`az acr list --query "[?name=='$acrName']"`
+# [[ ${#acrLength} -gt 3 ]] && echo "acr exist" || \
 az acr create --resource-group $resourceGroup \
   --name $acrName --sku Basic \
   --admin-enabled true 
