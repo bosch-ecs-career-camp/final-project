@@ -26,6 +26,17 @@ jobs:
             chmod +x $GITHUB_WORKSPACE/src/aks_build.sh
             $GITHUB_WORKSPACE/src/aks_build.sh
 
+      - name: Install Kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: 'v1.26.3'
+        id: install
+
+      - name: Check Version
+        run: ./src/check.sh
+        shell: bash
+
+
       
 
       
