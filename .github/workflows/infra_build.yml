@@ -24,7 +24,7 @@ jobs:
           azcliversion: 2.46.0
           inlineScript: |
             chmod +x $GITHUB_WORKSPACE/src/build_infra.sh
-            $GITHUB_WORKSPACE/src/build_infra.sh
+            $GITHUB_WORKSPACE/src/aks_build.sh
 
       
 
