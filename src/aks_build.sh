@@ -30,6 +30,7 @@ az network vnet create \
 --subnet-prefixes $addressPrefixSNet 
 
 # ---- create k8s service ----
+echo "Creating $aks"
 snetID=$(az network vnet subnet show \
 --resource-group $resourceGroup \
 --vnet-name $vNet --name $sNet \
@@ -42,10 +43,10 @@ az aks create --name $aks \
 --node-vm-size Standard_DS2_v2 \
 --network-plugin kubenet \
 --vnet-subnet-id $snetID \
---generate-ssh-keys \
 --attach-acr $acrName 
 
 # ---- credentials ---- 
+echo "Get access credentials for a managed Kubernetes cluster"
 az aks get-credentials \
 --resource-group $resourceGroup \
 --name $aks \
