@@ -43,6 +43,7 @@ az aks create --name $aks \
 --node-vm-size Standard_DS2_v2 \
 --network-plugin kubenet \
 --vnet-subnet-id $snetID \
+--generate-ssh-keys \
 --attach-acr $acrName 
 
 # ---- credentials ---- 
