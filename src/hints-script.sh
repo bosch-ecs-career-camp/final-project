@@ -24,4 +24,4 @@ az acr create --resource-group $resourceGroup \
   --admin-enabled true ;
 
 #  ----------  atach ACR to AKS -------------------
-az aks update -n stream4-task-aks -g final-project --attach-acr stream4bosch
+az aks update -n stream4-final-aks -g stream4-rg --attach-acr stream4acr
