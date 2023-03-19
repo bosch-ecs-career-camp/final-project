@@ -7,7 +7,7 @@ on:
       - 'Dockerfile'
 
 env:
-  #RUNNER_VERSION: "2.303.0"
+  # image container registry name
   ACR_NAME: stream4acr
   
 jobs:
@@ -17,28 +17,7 @@ jobs:
       - name: "Checkout GitHub Action"
         uses: actions/checkout@v3.0.2
         with:
-          fetch-depth: 0
-
-      # - name: "Login via Azure CLI"
-      #   uses: azure/login@v1.4.5
-      #   with:
-      #     creds: ${{ secrets.AZURE_CREDENTIALS }}
-      # - name: "Create Azure Container Registry"  
-      #   run: |
-      #    acrLength=`az acr list --query "[?name=='${{ env.ACR_NAME }}']"`
-      #    [[ ${#acrLength} -gt 3 ]] && echo "acr ${{ env.ACR_NAME }} exist" || \
-      #    az acr create --resource-group ${{ env.R_GROUP }} \
-      #    --name ${{ env.ACR_NAME }} --sku Basic \
-      #    --admin-enabled true 
-         
-
-      # - name: Azure CLI script file
-      #   uses: azure/CLI@v1
-      #   with:
-      #     azcliversion: 2.46.0
-      #     inlineScript: |
-      #       chmod +x $GITHUB_WORKSPACE/scripts/acr_create.sh
-      #       $GITHUB_WORKSPACE/scripts/acr_create.sh
+          fetch-depth: 0   
 
       - name: "Azure Container Registry Login"
         uses: azure/docker-login@v1

@@ -1,0 +1,31 @@
+name: Build Cloud Infrastructure
+
+on:
+  workflow_dispatch:
+  
+env: 
+  ACR_NAME: stream4acr
+  
+jobs:
+  build-AKS:
+    runs-on: ubuntu-latest
+    steps:      
+      - name: "Checkout GitHub Action"
+        uses: actions/checkout@v3.0.2
+       
+      - name: Azure Login
+        uses: azure/login@v1.4.5
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}          
+
+      - name: Azure CLI script file
+        uses: azure/CLI@v1
+        with:
+          azcliversion: 2.46.0
+          inlineScript: |
+            chmod +x $GITHUB_WORKSPACE/src/build_infra.sh
+            $GITHUB_WORKSPACE/src/build_infra.sh
+
+      
+
+      
