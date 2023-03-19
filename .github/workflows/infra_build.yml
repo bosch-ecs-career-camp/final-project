@@ -7,7 +7,7 @@ env:
   ACR_NAME: stream4acr
   
 jobs:
-  build-AKS:
+  build-aks-deploy-runner:
     runs-on: ubuntu-latest
     steps:      
       - name: "Checkout GitHub Action"
