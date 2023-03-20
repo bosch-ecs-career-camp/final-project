@@ -14,7 +14,7 @@ ACR_PASS=`az acr credential show -n $acrName --query passwords[0].value`
 
 subscr_ID=`az account show --query id --output tsv`
 az ad sp create-for-rbac \
---name final-project --role Contributor \
+--name final-project --role Owner \
 --scopes /subscriptions/$subscr_ID/resourceGroups/$resourceGroup \
 --sdk-auth
 echo ""

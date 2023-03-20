@@ -33,8 +33,9 @@ jobs:
         id: install
 
       - name: Deploy Runners
-        run: ./src/deploy_runners.sh
-        shell: bash
+        run: az version
+        #run: ./src/deploy_runners.sh
+        #shell: bash
 
 
       
