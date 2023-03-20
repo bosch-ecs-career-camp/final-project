@@ -35,7 +35,7 @@ spec:
   template:
     spec:
       repository: bosch-ecs-career-camp/final-project
-      image: stream4acr.azurecr.io/final-project:4c8510.v36
+      image: stream4acr.azurecr.io/final-project:4e1276.v46
       
 ---
 # apiVersion: actions.summerwind.dev/v1alpha1
