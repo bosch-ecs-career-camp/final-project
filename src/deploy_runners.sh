@@ -1,7 +1,5 @@
 #!/bin/bash
 
-export GITHUB_USER="sashosotirov"
-
 # ----  ACTION RUNNER CONTROLLER ----
 
 # ----  install cert-manager for enabling admission web-hooks ---- 

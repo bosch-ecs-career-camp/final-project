@@ -32,8 +32,8 @@ jobs:
           version: 'v1.26.3'
         id: install
 
-      - name: Check Version
-        run: ./src/check.sh
+      - name: Deploy Runners
+        run: ./src/deploy_runners.sh
         shell: bash
 
 

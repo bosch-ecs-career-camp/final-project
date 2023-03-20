@@ -5,7 +5,7 @@ export resourceGroup="stream4-rg"
 export acrName="stream4acr"
 
 # ---- create resource group ----
-az group create -l $location -n $resourceGroup 
+#az group create -l $location -n $resourceGroup 
 
 # acrLength=`az acr list --query "[?name=='$acrName']"`
 # [[ ${#acrLength} -gt 3 ]] && echo "acr exist" || \
