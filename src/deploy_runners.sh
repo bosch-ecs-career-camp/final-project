@@ -14,4 +14,4 @@ kubectl create secret generic controller-manager \
     --from-literal=github_token=${GITHUB_TOKEN}
 
 # ----  deploying ARC runners ----
-kubectl apply -f runner_deployment.yml
+kubectl apply -f ./src/runner_deployment.yml
