@@ -4,7 +4,7 @@ metadata:
   name: example-runners
 spec:
   minReplicas: 1
-  maxReplicas: 10
+  maxReplicas: 5
   scaleTargetRef:
     kind: RunnerDeployment
     # # In case the scale target is RunnerSet:
@@ -13,4 +13,4 @@ spec:
   scaleUpTriggers:
     - githubEvent:
         workflowJob: {}
-      duration: "30m"
+      duration: "3m"

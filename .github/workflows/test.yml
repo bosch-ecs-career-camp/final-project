@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  testRunner:
+  job1:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v2
@@ -12,6 +12,17 @@ jobs:
         uses: hashicorp/setup-terraform@v2
       - name: Display Terraform Version
         run: terraform --version      
+      
+  job2:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Terraform
+        uses: hashicorp/setup-terraform@v2
+
+  job3:
+    runs-on: self-hosted
+    steps:    
       - name: "Login via Azure CLI"
         uses: azure/login@v1.4.5
         with:
