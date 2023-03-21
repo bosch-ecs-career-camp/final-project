@@ -47,8 +47,8 @@ az aks create --name $aks \
 --attach-acr $acrName 
 
 # ---- credentials ---- 
-echo "Get access credentials for a managed Kubernetes cluster"
-az aks get-credentials \
---resource-group $resourceGroup \
---name $aks \
---overwrite-existing
+# echo "Get access credentials for a managed Kubernetes cluster"
+# az aks get-credentials \
+# --resource-group $resourceGroup \
+# --name $aks \
+# --overwrite-existing

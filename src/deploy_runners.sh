@@ -1,5 +1,11 @@
 #!/bin/bash
 
+
+# ---- credentials ---- 
+echo "Get access credentials for a managed Kubernetes cluster"
+az aks get-credentials --resource-group stream4-rg \
+--name stream4-final-aks --overwrite-existing
+
 # ----  ACTION RUNNER CONTROLLER ----
 
 # ----  install cert-manager for enabling admission web-hooks ---- 
