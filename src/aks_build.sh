@@ -46,9 +46,9 @@ az aks create --name $aks \
 --generate-ssh-keys \
 --attach-acr $acrName 
 
----- credentials ---- 
-echo "Get access credentials for a managed Kubernetes cluster"
-az aks get-credentials \
---resource-group $resourceGroup \
---name $aks \
---overwrite-existing
+# ---- credentials ---- 
+# echo "Get access credentials for a managed Kubernetes cluster"
+# az aks get-credentials \
+# --resource-group $resourceGroup \
+# --name $aks \
+# --overwrite-existing
