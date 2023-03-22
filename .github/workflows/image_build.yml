@@ -28,8 +28,16 @@ jobs:
       - name: "Build and Push Runner image"
         run: |
           count=$(git rev-list --all --count)
-          docker build -t ${{ env.ACR_NAME }}.azurecr.io/final-project:${GITHUB_SHA::6}.v$count .      
-          docker push ${{ env.ACR_NAME }}.azurecr.io/final-project:${GITHUB_SHA::6}.v$count
+          TAG=${GITHUB_SHA::6}.v$count
+          echo $TAG > tag
+          docker build -t ${{ env.ACR_NAME }}.azurecr.io/final-project:$TAG .      
+          docker push ${{ env.ACR_NAME }}.azurecr.io/final-project:$TAG
+
+      - name: Save TAG 
+        uses: actions/upload-artifact@v3
+        with:
+          name: tagging
+          path: tag
 
 
       

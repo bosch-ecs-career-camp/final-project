@@ -13,28 +13,41 @@ jobs:
       - name: "Checkout GitHub Action"
         uses: actions/checkout@v3.0.2
        
-      - name: Azure Login
-        uses: azure/login@v1.4.5
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}          
+      # - name: Azure Login
+      #   uses: azure/login@v1.4.5
+      #   with:
+      #     creds: ${{ secrets.AZURE_CREDENTIALS }}          
 
-      - name: Azure CLI script file
-        uses: azure/CLI@v1
-        with:
-          azcliversion: 2.46.0
-          inlineScript: |
-            chmod +x $GITHUB_WORKSPACE/src/aks_build.sh
-            $GITHUB_WORKSPACE/src/aks_build.sh
+      # - name: Azure CLI script file
+      #   uses: azure/CLI@v1
+      #   with:
+      #     azcliversion: 2.46.0
+      #     inlineScript: |
+      #       chmod +x $GITHUB_WORKSPACE/src/aks_build.sh
+      #       $GITHUB_WORKSPACE/src/aks_build.sh
 
-      - name: Install Kubectl
-        uses: azure/setup-kubectl@v3
-        with:
-          version: 'v1.26.3'
-        id: install
+      # - name: Install Kubectl
+      #   uses: azure/setup-kubectl@v3
+      #   with:
+      #     version: 'v1.26.3'
+      #   id: install
 
-      - name: Deploy Runners
-        run: ./src/deploy_runners.sh
+      - name: Download TAG
+        uses: actions/download-artifact@v3
+        with:
+          name: tagging
+
+      - name: test
         shell: bash
+        run: |
+          TAG=`cat tag`
+          cat runner-deployment.yml | envsubst | cat -
+          
+
+      
+      # - name: Deploy Runners
+      #   run: ./src/deploy_runners.sh
+      #   shell: bash
 
 
       

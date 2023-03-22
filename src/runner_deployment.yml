@@ -32,10 +32,10 @@ kind: RunnerDeployment
 metadata:
   name: runner-deployment
 spec:
-  template:
+  template: 
     spec:
       repository: bosch-ecs-career-camp/final-project
-      image: stream4acr.azurecr.io/final-project:1112da.v51
+      image: stream4acr.azurecr.io/final-project:$TAG
       
 ---
 # apiVersion: actions.summerwind.dev/v1alpha1

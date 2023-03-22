@@ -7,11 +7,9 @@ jobs:
   job1:
     runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v2
       - name: Install Terraform
         uses: hashicorp/setup-terraform@v2
-      - name: Display Terraform Version
-        run: terraform --version      
+         
       
   job2:
     runs-on: self-hosted
@@ -27,3 +25,17 @@ jobs:
         uses: azure/login@v1.4.5
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
+  
+  job4:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Terraform
+        uses: hashicorp/setup-terraform@v2
+  
+  job5:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Terraform
+        uses: hashicorp/setup-terraform@v2
