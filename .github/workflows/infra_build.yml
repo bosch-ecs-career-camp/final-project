@@ -44,6 +44,9 @@ jobs:
           ls -al 
           pwd 
           TAG=`cat tagging/tag`
+          echo $TAG
+          ls -alh .src/
+          cat ./src/runner-deployment.yml
           cat ./src/runner-deployment.yml | envsubst | cat -
           
 
