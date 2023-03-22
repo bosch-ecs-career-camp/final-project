@@ -35,22 +35,13 @@ jobs:
       - name: Download TAG
         uses: dawidd6/action-download-artifact@v2
         with: 
-          workflow: image_build.yml
-        
-      
-      - name: test
-        shell: bash
+          workflow: image_build.yml     
+              
+      - name: Deploy Runners
         run: |
-          ls -al 
-          pwd 
-          export TAG=`cat tagging/tag`                    
-          cat ./src/runner_deployment.yml | envsubst | cat -
-          
-
-      
-      # - name: Deploy Runners
-      #   run: ./src/deploy_runners.sh
-      #   shell: bash
+          export TAG=`cat tagging/tag`
+          ./src/deploy_runners.sh
+        shell: bash
 
 
       
