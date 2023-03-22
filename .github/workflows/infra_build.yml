@@ -41,7 +41,7 @@ jobs:
         shell: bash
         run: |
           TAG=`cat tag`
-          cat runner-deployment.yml | envsubst | cat -
+          cat ./src/runner-deployment.yml | envsubst | cat -
           
 
       
