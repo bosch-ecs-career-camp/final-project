@@ -1,4 +1,4 @@
-name: Build Cloud Infrastructure
+name: Build AKS and Action Runners
 
 on:
   workflow_dispatch:
@@ -18,7 +18,7 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}          
 
-      - name: Azure CLI script file
+      - name: Build AKS
         uses: azure/CLI@v1
         with:
           azcliversion: 2.46.0

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export location="westeurope"
+export location="switzerlandnorth"
 export resourceGroup="stream4-rg"
 export acrName="stream4acr"
 
