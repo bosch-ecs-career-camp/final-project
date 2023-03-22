@@ -34,8 +34,7 @@ jobs:
 
       - name: Download TAG
         uses: dawidd6/action-download-artifact@v2
-        with:          
-          name: tagging
+        
       
       - name: test
         shell: bash
