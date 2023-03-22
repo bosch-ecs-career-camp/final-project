@@ -27,3 +27,5 @@ az acr create --resource-group $resourceGroup \
 az aks update -n stream4-final-aks -g stream4-rg --attach-acr stream4acr
 
 cat testpod.yml | envsubst | kubectl apply -f -
+
+az aks check-acr --resource-group stream4-rg --name stream4-final-aks --acr stream4acr.azurecr.io

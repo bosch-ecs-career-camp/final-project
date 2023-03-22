@@ -14,11 +14,6 @@ export sNet="$rootname-snet"
 export addressPrefixSNet="192.168.0.0/26"
 export sku=Standard
 
-
-# # ---- create resource group ----
-# echo "Creating $resourceGroup in $location..."
-# az group create -l $location -n $resourceGroup 
-
 # ---- create virtual network ----
 echo "Creating $vNet"
 az network vnet create \
@@ -43,12 +38,5 @@ az aks create --name $aks \
 --node-vm-size Standard_DS2_v2 \
 --network-plugin kubenet \
 --vnet-subnet-id $snetID \
---generate-ssh-keys \
+--no-ssh-key -x \
 --attach-acr $acrName 
-
-# ---- credentials ---- 
-# echo "Get access credentials for a managed Kubernetes cluster"
-# az aks get-credentials \
-# --resource-group $resourceGroup \
-# --name $aks \
-# --overwrite-existing
