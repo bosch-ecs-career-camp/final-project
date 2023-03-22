@@ -43,7 +43,7 @@ jobs:
         run: |
           ls -al 
           pwd 
-          TAG=`cat tagging/tag`                    
+          export TAG=`cat tagging/tag`                    
           cat ./src/runner_deployment.yml | envsubst | cat -
           
 
