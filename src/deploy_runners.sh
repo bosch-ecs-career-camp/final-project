@@ -21,4 +21,4 @@ kubectl create secret generic controller-manager \
 
 # ----  deploying ARC runners ----
 
-cat ./src/runner_deployment.yml | envsubst | kubectl apply -f -
+cat runner_deployment.yml | envsubst | kubectl apply -f -

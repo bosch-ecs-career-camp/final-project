@@ -18,7 +18,7 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}          
 
-      - name: Build AKS
+      - name: Create AKS and attach ARC
         uses: azure/CLI@v1
         with:
           azcliversion: 2.46.0
