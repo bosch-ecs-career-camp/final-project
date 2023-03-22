@@ -41,7 +41,9 @@ jobs:
       - name: test
         shell: bash
         run: |
-          TAG=`cat tag`
+          ls -al 
+          pwd 
+          TAG=`cat tagging/tag`
           cat ./src/runner-deployment.yml | envsubst | cat -
           
 
