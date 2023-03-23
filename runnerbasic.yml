@@ -3,10 +3,12 @@ kind: RunnerDeployment
 metadata:
   name: azure-runners
   namespace: default 
-spec:
-  replicas: 1
+  labels:
+    - demo
+    - azure
+spec:  
   template:
     spec:
       repository: bosch-ecs-career-camp/final-project
-      image: stream4acr.azurecr.io/final-project:32fe7b.v86
+      image: stream4acr.azurecr.io/final-project:f3c34f.v88
       
