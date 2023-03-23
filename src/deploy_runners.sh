@@ -23,5 +23,5 @@ kubectl create secret generic controller-manager \
     --from-literal=github_token=${GITHUB_TOKEN}
 
 # ----  deploying ARC runners ----
-sleep 30
+sleep 60
 cat runner_deployment.yml | envsubst | kubectl apply -f -
