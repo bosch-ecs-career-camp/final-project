@@ -1,4 +1,4 @@
-name: Deploy Action Runners
+name: Create AKS and Deploy Action Runners
 
 on:
   workflow_dispatch:
