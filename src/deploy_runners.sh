@@ -26,4 +26,5 @@
 # # sleep 90
 # # cat runner_deployment.yml | envsubst | kubectl apply -f -
 
+echo "PAT is :"
 echo ${GITHUB_TOKEN}

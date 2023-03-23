@@ -21,6 +21,8 @@ jobs:
           workflow: image_build.yml     
               
       - name: Deploy Runners
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
           export TAG=`cat tagging/tag`
           ./src/deploy_runners.sh
