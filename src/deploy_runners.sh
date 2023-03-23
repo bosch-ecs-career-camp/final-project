@@ -12,7 +12,6 @@ az aks get-credentials --resource-group stream4-rg \
 sleep 10
 kubectl apply -f cert-manager.yaml
 
-
 # ---- install and setup action runner controller ----
 sleep 10
 kubectl create -f actions-runner-controller.yaml
