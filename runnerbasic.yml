@@ -2,13 +2,14 @@ apiVersion: actions.summerwind.dev/v1alpha1
 kind: RunnerDeployment
 metadata:
   name: azure-runners
-  namespace: default 
-  labels:
-    - demo
-    - azure
+  namespace: default   
 spec:  
   template:
     spec:
+      labels:
+       - demo
+       - azure
       repository: bosch-ecs-career-camp/final-project
       image: stream4acr.azurecr.io/final-project:f3c34f.v88
+      
       
