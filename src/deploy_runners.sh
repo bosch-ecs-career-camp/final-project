@@ -18,10 +18,10 @@ kubectl create -f namespace.yml
 # -enable authentication to GitHub API-
 kubectl create secret generic controller-manager \
     -n actions-runner-system \
-    --from-literal=github_token=${GITHUB_TOKEN}
+    --from-literal=github_token=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
+    #${GITHUB_TOKEN}
 
 kubectl create -f actions-runner-controller.yaml
-
 
 # ----  deploying ARC runners ----
 sleep 30
