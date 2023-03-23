@@ -23,5 +23,5 @@ kubectl create secret generic controller-manager \
 kubectl create -f actions-runner-controller.yaml
 
 # ----  deploying ARC runners ----
-sleep 90
+sleep 180
 cat runner_deployment.yml | envsubst | kubectl apply -f -
