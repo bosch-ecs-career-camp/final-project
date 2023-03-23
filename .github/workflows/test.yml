@@ -5,7 +5,7 @@ on:
 
 jobs:
   job1:
-    runs-on: [azure,demo]
+    runs-on: [azure, demo]
     steps:
       - name: Install Terraform
         uses: hashicorp/setup-terraform@v2
@@ -19,7 +19,7 @@ jobs:
         uses: hashicorp/setup-terraform@v2
 
   job3:
-    runs-on: [azure,demo]
+    runs-on: [azure, demo]
     steps:    
       - name: "Login via Azure CLI"
         uses: azure/login@v1.4.5
@@ -27,14 +27,14 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
   
   job4:
-    runs-on: [azure,demo]
+    runs-on: [azure, demo]
     steps:
       - uses: actions/checkout@v2
       - name: Install Terraform
         uses: hashicorp/setup-terraform@v2
   
   job5:
-    runs-on: [azure,demo]
+    runs-on: [azure, demo]
     steps:
       - uses: actions/checkout@v2
       - name: Install Terraform
