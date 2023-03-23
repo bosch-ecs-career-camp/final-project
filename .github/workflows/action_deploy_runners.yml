@@ -1,0 +1,32 @@
+name: Create AKS and Deploy Action Runners
+
+on:
+  workflow_dispatch:
+  
+jobs:
+  build-aks-deploy-runner:
+    runs-on: ubuntu-latest
+    steps:      
+      - name: "Checkout GitHub Action"
+        uses: actions/checkout@v3.0.2
+       
+      - name: Azure Login
+        uses: azure/login@v1.4.5
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}     
+     
+      - name: Download TAG
+        uses: dawidd6/action-download-artifact@v2
+        with: 
+          workflow: image_build.yml     
+              
+      - name: Deploy Runners
+        run: |
+          export TAG=`cat tagging/tag`
+          ./src/deploy_runners.sh
+        shell: bash
+
+
+      
+
+      
