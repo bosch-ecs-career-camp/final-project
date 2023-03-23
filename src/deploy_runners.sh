@@ -9,11 +9,11 @@ az aks get-credentials --resource-group stream4-rg \
 # ----  ACTION RUNNER CONTROLLER ----
 
 # ----  install cert-manager for enabling admission web-hooks ---- 
-sleep 10
+sleep 120
 kubectl apply -f cert-manager.yaml
 
 # ---- install and setup action runner controller ----
-sleep 10
+sleep 30
 kubectl create -f namespace.yml
 # -enable authentication to GitHub API-
 kubectl create secret generic controller-manager \
