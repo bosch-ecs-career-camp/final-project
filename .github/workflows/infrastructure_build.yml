@@ -36,7 +36,7 @@ jobs:
               
       - name: Deploy Runners
         env:
-          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
         run: |
           export TAG=`cat tagging/tag`
           ./src/deploy_runners.sh

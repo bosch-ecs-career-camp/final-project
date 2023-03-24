@@ -5,7 +5,8 @@ on:
 
 jobs:
   job1:
-    runs-on: ['azure', 'demo']
+    runs-on: ubuntu
+      #['azure', 'demo']
     steps:
       - name: Install Terraform
         uses: hashicorp/setup-terraform@v2
