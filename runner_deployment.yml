@@ -2,10 +2,30 @@
 apiVersion: actions.summerwind.dev/v1alpha1
 kind: RunnerDeployment
 metadata:
-  name: runner-deployment
-spec:   
-  replicas: 1
+  name: azure-runners
+  namespace: default   
+spec:  
   template:
     spec:
+      labels:
+       - demo
+       - azure
       repository: bosch-ecs-career-camp/final-project
-      image: stream4acr.azurecr.io/final-project:$TAG      
+      image: stream4acr.azurecr.io/final-project:$TAG    
+
+---
+apiVersion: actions.summerwind.dev/v1alpha1
+kind: HorizontalRunnerAutoscaler
+metadata:
+  name: pull-autoscaler-demo
+spec:
+  scaleDownDelaySecondsAfterScaleOut: 30
+  scaleTargetRef:
+    kind: RunnerDeployment    
+    name: azure-runners
+  minReplicas: 1
+  maxReplicas: 7
+  metrics:
+  - type: TotalNumberOfQueuedAndInProgressWorkflowRuns
+    repositoryNames:    
+    - https://github.com/bosch-ecs-career-camp/final-project

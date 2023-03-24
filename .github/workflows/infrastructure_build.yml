@@ -1,11 +1,8 @@
 name: Create AKS and Deploy Action Runners
 
 on:
-  workflow_dispatch:
-  
-env: 
-  ACR_NAME: stream4acr
-  
+  workflow_dispatch: 
+
 jobs:
   build-aks-deploy-runner:
     runs-on: ubuntu-latest

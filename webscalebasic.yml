@@ -11,6 +11,6 @@ spec:
     # kind: RunnerSet
     name: azure-runners
   scaleUpTriggers:
-    - githubEvent:
-        workflowJob: {}
+    - githubEvent: {}
+        #workflowJob: {}
       duration: "5m"

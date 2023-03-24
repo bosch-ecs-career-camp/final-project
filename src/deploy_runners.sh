@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 # ---- credentials ---- 
 echo "Get access credentials for a managed Kubernetes cluster"
 az aks get-credentials --resource-group stream4-rg \
@@ -9,12 +8,12 @@ az aks get-credentials --resource-group stream4-rg \
 # ----  ACTION RUNNER CONTROLLER ----
 
 # ----  install cert-manager for enabling admission web-hooks ---- 
-sleep 10
 kubectl apply -f cert-manager.yaml
 
 # ---- install and setup action runner controller ----
-sleep 10
-kubectl create -f namespace.yml
+kubectl create namespace actions-runner-system
+kubectl label namespaces actions-runner-system \
+control-plane=controller-manager --overwrite=true
 # -enable authentication to GitHub API-
 kubectl create secret generic controller-manager \
     -n actions-runner-system \
@@ -23,5 +22,5 @@ kubectl create secret generic controller-manager \
 kubectl create -f actions-runner-controller.yaml
 
 # ----  deploying ARC runners ----
-sleep 180
+sleep 120
 cat runner_deployment.yml | envsubst | kubectl apply -f -
