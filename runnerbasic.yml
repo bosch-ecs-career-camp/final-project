@@ -10,6 +10,6 @@ spec:
        - demo
        - azure
       repository: bosch-ecs-career-camp/final-project
-      image: stream4acr.azurecr.io/final-project:f3c34f.v88
+      image: stream4acr.azurecr.io/final-project:643a48.v95
       
       

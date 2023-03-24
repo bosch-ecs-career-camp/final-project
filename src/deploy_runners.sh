@@ -11,9 +11,11 @@ az aks get-credentials --resource-group stream4-rg \
 kubectl apply -f cert-manager.yaml
 
 # ---- install and setup action runner controller ----
-kubectl create namespace actions-runner-system
-kubectl label namespaces actions-runner-system \
-control-plane=controller-manager --overwrite=true
+# kubectl create namespace actions-runner-system
+# kubectl label namespaces actions-runner-system \
+# control-plane=controller-manager --overwrite=true
+
+kubectl create -f namespace.yml
 # -enable authentication to GitHub API-
 kubectl create secret generic controller-manager \
     -n actions-runner-system \
