@@ -28,4 +28,4 @@ spec:
   metrics:
   - type: TotalNumberOfQueuedAndInProgressWorkflowRuns
     repositoryNames:    
-    - https://github.com/bosch-ecs-career-camp/final-project
+    - bosch-ecs-career-camp/final-project

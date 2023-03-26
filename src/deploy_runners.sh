@@ -22,7 +22,8 @@ kubectl create secret generic controller-manager \
     --from-literal=github_token=${GITHUB_TOKEN}
 
 kubectl create -f actions-runner-controller.yaml
+kubectl wait pods --namespace actions-runner-system --all \
+--for=jsonpath='{.status.phase}'=Running --timeout=180s
 
 # ----  deploying ARC runners ----
-sleep 90
 cat runner_deployment.yml | envsubst | kubectl apply -f -
