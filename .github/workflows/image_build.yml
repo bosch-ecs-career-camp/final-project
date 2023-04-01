@@ -30,7 +30,7 @@ jobs:
           count=$(git rev-list --all --count)
           export TAG=${GITHUB_SHA::6}.v$count          
           echo $TAG > tag
-          docker build -t ${{ env.ACR_NAME }}.azurecr.io/final-project:$TAG .      
+          docker build -t ${{ env.ACR_NAME }}.azurecr.io/final-project:$TAG build/      
           docker push ${{ env.ACR_NAME }}.azurecr.io/final-project:$TAG
 
       - name: Save TAG 
