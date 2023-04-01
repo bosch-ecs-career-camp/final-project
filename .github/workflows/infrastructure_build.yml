@@ -20,8 +20,8 @@ jobs:
         with:
           azcliversion: 2.46.0
           inlineScript: |
-            chmod +x $GITHUB_WORKSPACE/src/aks_build.sh
-            $GITHUB_WORKSPACE/src/aks_build.sh
+            chmod +x $GITHUB_WORKSPACE/src/infra_build.sh
+            $GITHUB_WORKSPACE/src/infra_build.sh
 
       - name: Install KubeControl
         uses: azure/setup-kubectl@v3
@@ -39,7 +39,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
         run: |
           export TAG=`cat tagging/tag`
-          ./src/deploy_runners.sh
+          src/deploy_runners.sh
         shell: bash
 
 
