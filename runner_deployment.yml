@@ -11,7 +11,8 @@ spec:
        - demo
        - azure
       repository: bosch-ecs-career-camp/final-project
-      image: stream4acr.azurecr.io/final-project:$TAG    
+      image: stream4acr.azurecr.io/final-project:$TAG
+      imagePullPolicy: Always   
 
 ---
 apiVersion: actions.summerwind.dev/v1alpha1

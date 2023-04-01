@@ -1,4 +1,4 @@
-name: Local runner test
+name: multi job Demo
 
 on:
   workflow_dispatch:
