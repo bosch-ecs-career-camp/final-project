@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: Pod
-metadata:
-  name: pod-test    
-spec:
-  containers:
-  
-  - name: tester
-    image: stream4acr.azurecr.io/final-project:643a48.v95    
