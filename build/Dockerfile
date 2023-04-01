@@ -1,5 +1,5 @@
 FROM summerwind/actions-runner:v2.303.0-ubuntu-20.04-3417c5a
-LABEL Author="Sotirov"
+LABEL Author="S.Sotirov"
 LABEL Email="sotirov.sasho@gmail.com"
 RUN curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 RUN sudo curl -LO "https://dl.k8s.io/release/$(curl -L -s \
