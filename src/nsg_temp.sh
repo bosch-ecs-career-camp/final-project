@@ -6,7 +6,7 @@ export aks="$rootname-final-aks"
 export location="switzerlandnorth"
 export resourceGroup="$rootname-rg"
 export acrName=$rootname"acr"
-export nsgName="$rootname-test-nsg"
+export nsgName="$rootname-nsg"
 export vNet="$rootname-vnet"
 export sNet="$rootname-snet"
 
@@ -18,7 +18,7 @@ az network nsg rule create \
 --resource-group $resourceGroup \
 --priority 4096 \
 --access Deny \
---direction Inbound 
+--direction Inbound \
 --destination-port-ranges '*'
 
 az network nsg rule create \
