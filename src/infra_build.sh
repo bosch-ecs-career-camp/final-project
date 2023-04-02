@@ -40,3 +40,39 @@ az aks create --name $aks \
 --vnet-subnet-id $snetID \
 --no-ssh-key -x \
 --attach-acr $acrName 
+
+# ---- create security rules -----
+az network nsg create -g $resourceGroup -n $nsgName
+
+az network nsg rule create \
+--name denyAllInbound \
+--nsg-name $nsgName \
+--resource-group $resourceGroup \
+--priority 4096 \
+--access Deny \
+--direction Inbound 
+--destination-port-ranges '*'
+
+az network nsg rule create \
+--name denyAllOutbound \
+--nsg-name $nsgName \
+--resource-group $resourceGroup \
+--access Deny \
+--priority 500 \
+--direction Outbound \
+--destination-port-ranges '*'
+
+az network nsg rule create \
+--name AllowHttpsTraffic \
+--nsg-name $nsgName \
+--resource-group $resourceGroup \
+--priority 499 \
+--destination-port-ranges 443 \
+--direction Outbound \
+--protocol Tcp
+
+az network vnet subnet update \
+--resource-group $resourceGroup \
+--vnet-name $vNet \
+--name $sNet \
+--network-security-group $nsgName
