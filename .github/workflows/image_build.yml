@@ -47,6 +47,6 @@ jobs:
           echo "" >> $GITHUB_STEP_SUMMARY # this is a blank line
           echo "- Successfully build image final-project:${{ env.TAG }}" >> $GITHUB_STEP_SUMMARY
           echo "- Successfully push to Azure Container Registry name: ${{ env.ACR_NAME }}" >> $GITHUB_STEP_SUMMARY
-          echo "- Access URL is "https://${{ env.ACR_NAME }}.azurecr.io/final-project:${{ env.TAG }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Access URL is https://${{ env.ACR_NAME }}.azurecr.io/final-project:${{ env.TAG }}" >> $GITHUB_STEP_SUMMARY
                     
       
