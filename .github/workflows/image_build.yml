@@ -19,12 +19,12 @@ jobs:
         with:
           fetch-depth: 0   
 
-      # - name: "Azure Container Registry Login"
-      #   uses: azure/docker-login@v1
-      #   with:
-      #     login-server: ${{ env.ACR_NAME }}.azurecr.io
-      #     username: ${{ env.ACR_NAME }}
-      #     password: ${{ secrets.REG_PASS }}
+      - name: "Azure Container Registry Login"
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{ env.ACR_NAME }}.azurecr.io
+          username: ${{ env.ACR_NAME }}
+          password: ${{ secrets.REG_PASS }}
       - name: "Build and Push Runner image"
         id: tag
         run: |
@@ -32,8 +32,8 @@ jobs:
           export TAG=${GITHUB_SHA::6}.v$count        
           echo "TAG=$TAG" >> $GITHUB_ENV
           echo $TAG > tag
-  #        docker build -t ${{ env.ACR_NAME }}.azurecr.io/final-project:$TAG build/      
-  #        docker push ${{ env.ACR_NAME }}.azurecr.io/final-project:$TAG
+          docker build -t ${{ env.ACR_NAME }}.azurecr.io/final-project:$TAG build/      
+          docker push ${{ env.ACR_NAME }}.azurecr.io/final-project:$TAG
 
       - name: Save TAG 
         uses: actions/upload-artifact@v3
@@ -46,7 +46,7 @@ jobs:
           echo "### Successfully complete the job with the following details :rocket:" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY # this is a blank line
           echo "- Successfully build image final-project:${{ env.TAG }}" >> $GITHUB_STEP_SUMMARY
-          echo "- Successfully push to ACR ${{ env.ACR_NAME }}.azurecr.io" >> $GITHUB_STEP_SUMMARY
-          echo "- Access URL is ${{ env.ACR_NAME }}.azurecr.io/final-project:${{ env.TAG }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Successfully push to Azure Container Registry name: ${{ env.ACR_NAME }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Access URL is "https://${{ env.ACR_NAME }}.azurecr.io/final-project:${{ env.TAG }}" >> $GITHUB_STEP_SUMMARY
                     
       
