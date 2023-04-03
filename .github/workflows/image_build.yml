@@ -30,7 +30,7 @@ jobs:
         run: |
           count=$(git rev-list --all --count)
           export TAG=${GITHUB_SHA::6}.v$count        
-          echo TAG=$TAG >> $GITHUB_ENV
+          echo "TAG=$TAG" >> $GITHUB_ENV
           echo $TAG > tag
   #        docker build -t ${{ env.ACR_NAME }}.azurecr.io/final-project:$TAG build/      
   #        docker push ${{ env.ACR_NAME }}.azurecr.io/final-project:$TAG
@@ -41,12 +41,12 @@ jobs:
           name: tagging
           path: tag
 
-      - name: Generate list using Markdown
+      - name: Generate Summary
         run: |
           echo "### Successfully complete the job with the following details :rocket:" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY # this is a blank line
-          echo "- Successfully build image final-project:${{ steps.tag.outputs.TAG }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Successfully build image final-project:${{ env.TAG }}" >> $GITHUB_STEP_SUMMARY
           echo "- Successfully push to ACR ${{ env.ACR_NAME }}.azurecr.io" >> $GITHUB_STEP_SUMMARY
-          echo "- Access URL is ${{ env.ACR_NAME }}.azurecr.io/final-project:${{ steps.tag.outputs.TAG }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Access URL is ${{ env.ACR_NAME }}.azurecr.io/final-project:${{ env.TAG }}" >> $GITHUB_STEP_SUMMARY
                     
       
