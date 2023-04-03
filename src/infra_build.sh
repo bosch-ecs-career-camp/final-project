@@ -42,7 +42,7 @@ az aks create --name $aks \
 --no-ssh-key -x \
 --attach-acr $acrName 
 
-# ---- create security rules -----
+# ---- create nsg and security rules -----
 az network nsg create -g $resourceGroup -n $nsgName
 
 az network nsg rule create \

@@ -14,30 +14,38 @@ jobs:
   build-push-and-versioning:
     runs-on: ubuntu-latest
     steps:      
-      - name: "Checkout GitHub Action"
-        uses: actions/checkout@v3.0.2
-        with:
-          fetch-depth: 0   
+      # - name: "Checkout GitHub Action"
+      #   uses: actions/checkout@v3.0.2
+      #   with:
+      #     fetch-depth: 0   
 
-      - name: "Azure Container Registry Login"
-        uses: azure/docker-login@v1
-        with:
-          login-server: ${{ env.ACR_NAME }}.azurecr.io
-          username: ${{ env.ACR_NAME }}
-          password: ${{ secrets.REG_PASS }}
+      # - name: "Azure Container Registry Login"
+      #   uses: azure/docker-login@v1
+      #   with:
+      #     login-server: ${{ env.ACR_NAME }}.azurecr.io
+      #     username: ${{ env.ACR_NAME }}
+      #     password: ${{ secrets.REG_PASS }}
       - name: "Build and Push Runner image"
         run: |
           count=$(git rev-list --all --count)
           export TAG=${GITHUB_SHA::6}.v$count          
           echo $TAG > tag
-          docker build -t ${{ env.ACR_NAME }}.azurecr.io/final-project:$TAG build/      
-          docker push ${{ env.ACR_NAME }}.azurecr.io/final-project:$TAG
+  #        docker build -t ${{ env.ACR_NAME }}.azurecr.io/final-project:$TAG build/      
+  #        docker push ${{ env.ACR_NAME }}.azurecr.io/final-project:$TAG
 
       - name: Save TAG 
         uses: actions/upload-artifact@v3
         with:
           name: tagging
           path: tag
+
+      - name: Generate list using Markdown
+        run: |
+          echo "This is the lead in sentence for the list" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY # this is a blank line
+          echo "- Lets add a bullet point" >> $GITHUB_STEP_SUMMARY
+          echo "- Lets add a second bullet point" >> $GITHUB_STEP_SUMMARY
+          echo "- How about a third one?" >> $GITHUB_STEP_SUMMARY
 
 
       
